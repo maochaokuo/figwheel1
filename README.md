@@ -1,3 +1,41 @@
+# first workable clojure script project.
+## step1
+create a new project with <project-name>
+```
+lein new figwheel <project-name> -- --reagent
+cd <project-name>
+npm install
+```
+## step2
+(optional), do it only if you cannot properly work. make a few changes in project.clj, remember to replace all localhost to your IP
+```
+; under :figwheel add
+:figwheel {:on-jsload "figwheel1.core/on-js-reload"
+           :websocket-host "192.168.1.42"
+           :websocket-url "ws://192.168.1.42:3449/figwheel-ws"
+;...
+					 :open-urls ["http://192.168.1.42:3449/index.html"]}
+; unremark server-ip and put your fixed ip
+:figwheel {;; :http-server-root "public" ;; default and assumes "resources"
+             ;; :server-port 3449 ;; default
+             :server-ip "192.168.1.42"	 
+```
+at last, you might need to change if it changed, in the file: resources\public\js\compiled\out\figwheel\connect.js
+```
+// change ws://localhost:3449/figwheel-ws to
+ws://192.168.1.42:3449/figwheel-ws
+```
+## step3
+then run it 
+```
+lein figwheel
+```
+
+
+
+
+
+
 # figwheel1
 
 FIXME: Write a one-line description of your library/project.
